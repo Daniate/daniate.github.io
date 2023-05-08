@@ -4,24 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>第08章-裁剪画面 | Daniate</title>
+  <title>Alpine Linux: unable to select packages | Daniate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="裁剪画面裁剪画面，可以使用以下滤镜：  crop cropdetect  crop 滤镜裁剪画面需要使用crop滤镜，关于该滤镜的具体选项，可以通过ffmpeg -h filter&#x3D;crop进行查看。 比如，裁剪画面中心区域（这里，我们把裁剪后的宽高设置为原来的三分之一）： ffmpeg -i 1.mp4 -vf crop&#x3D;w&#x3D;iw&#x2F;3:h&#x3D;ih&#x2F;3 2.mp4 cropdetect 滤镜关于该滤">
+  <meta name="description" content="执行apk add npm出现错误： 123ERROR: unable to select packages:  npm (no such package):    required by: world[npm]  解决方式：编辑&#x2F;etc&#x2F;apk&#x2F;repositories，删除链接前面存在的#。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第08章-裁剪画面">
-<meta property="og:url" content="http://example.com/2021/11/12/ffmpeg-cli/%E7%AC%AC08%E7%AB%A0-%E8%A3%81%E5%89%AA%E7%94%BB%E9%9D%A2/index.html">
+<meta property="og:title" content="Alpine Linux: unable to select packages">
+<meta property="og:url" content="http://example.com/2023/05/08/Alpine-Linux-unable-to-select-packages/index.html">
 <meta property="og:site_name" content="Daniate">
-<meta property="og:description" content="裁剪画面裁剪画面，可以使用以下滤镜：  crop cropdetect  crop 滤镜裁剪画面需要使用crop滤镜，关于该滤镜的具体选项，可以通过ffmpeg -h filter&#x3D;crop进行查看。 比如，裁剪画面中心区域（这里，我们把裁剪后的宽高设置为原来的三分之一）： ffmpeg -i 1.mp4 -vf crop&#x3D;w&#x3D;iw&#x2F;3:h&#x3D;ih&#x2F;3 2.mp4 cropdetect 滤镜关于该滤">
+<meta property="og:description" content="执行apk add npm出现错误： 123ERROR: unable to select packages:  npm (no such package):    required by: world[npm]  解决方式：编辑&#x2F;etc&#x2F;apk&#x2F;repositories，删除链接前面存在的#。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/media/16346133104916.png">
-<meta property="og:image" content="http://example.com/images/media/16346133104917.png">
-<meta property="article:published_time" content="2021-11-12T09:15:46.000Z">
-<meta property="article:modified_time" content="2023-04-23T13:11:55.461Z">
+<meta property="article:published_time" content="2023-05-08T09:18:52.000Z">
+<meta property="article:modified_time" content="2023-05-08T09:25:26.524Z">
 <meta property="article:author" content="Daniate">
-<meta property="article:tag" content="FFmpeg-CLI">
-<meta property="article:tag" content="FFmpeg命令行工具">
+<meta property="article:tag" content="Alpine">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/media/16346133104916.png">
   
     <link rel="alternate" href="/atom.xml" title="Daniate" type="application/atom+xml">
   
@@ -78,10 +74,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-ffmpeg-cli/第08章-裁剪画面" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Alpine-Linux-unable-to-select-packages" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/11/12/ffmpeg-cli/%E7%AC%AC08%E7%AB%A0-%E8%A3%81%E5%89%AA%E7%94%BB%E9%9D%A2/" class="article-date">
-  <time class="dt-published" datetime="2021-11-12T09:15:46.000Z" itemprop="datePublished">2021-11-12</time>
+    <a href="/2023/05/08/Alpine-Linux-unable-to-select-packages/" class="article-date">
+  <time class="dt-published" datetime="2023-05-08T09:18:52.000Z" itemprop="datePublished">2023-05-08</time>
 </a>
     
   </div>
@@ -92,7 +88,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      第08章-裁剪画面
+      Alpine Linux: unable to select packages
     </h1>
   
 
@@ -100,34 +96,19 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="裁剪画面"><a href="#裁剪画面" class="headerlink" title="裁剪画面"></a>裁剪画面</h1><p>裁剪画面，可以使用以下滤镜：</p>
-<ul>
-<li>crop</li>
-<li>cropdetect</li>
-</ul>
-<h2 id="crop-滤镜"><a href="#crop-滤镜" class="headerlink" title="crop 滤镜"></a>crop 滤镜</h2><p>裁剪画面需要使用<code>crop</code>滤镜，关于该滤镜的具体选项，可以通过<code>ffmpeg -h filter=crop</code>进行查看。</p>
-<p>比如，裁剪画面中心区域（这里，我们把裁剪后的宽高设置为原来的三分之一）：</p>
-<p><code>ffmpeg -i 1.mp4 -vf crop=w=iw/3:h=ih/3 2.mp4</code></p>
-<h2 id="cropdetect-滤镜"><a href="#cropdetect-滤镜" class="headerlink" title="cropdetect 滤镜"></a>cropdetect 滤镜</h2><p>关于该滤镜的具体选项，可以通过<code>ffmpeg -h filter=cropdetect</code>进行查看。</p>
-<p><img src="/images/media/16346133104916.png" alt="16346133104916"></p>
-<p>例如上面的画面，边缘有黑色区域，我们想要把黑色区域裁剪掉，就需要用到<code>cropdetect</code>滤镜，当然，边缘区域有可能并不是纯黑的，通常需要使用该滤镜的<code>limit</code>选项，用它指定一个阈值，低于该阈值的像素，就会被认定为黑色。</p>
-<p><strong>使用<code>cropdetect</code>滤镜时，它会输出裁剪区域，随后我们可以使用输出的裁剪区域，把画面边缘的黑色区域裁剪掉。</strong></p>
-<p>首先使用<code>cropdetect</code>滤镜，获取到裁剪区域：</p>
-<p><code>ffmpeg -i 1.mp4 -vf cropdetect=limit=255 -vframes 10 2.mp4</code></p>
-<p>运行命令后，输出信息中会有类似这样的信息</p>
-<p><img src="/images/media/16346133104917.png" alt="-w1268"></p>
-<p>当输出的<code>crop=?:?:?:?</code>稳定时（如，上图中的圈红部分），我们就可以用这个裁剪区域裁剪掉黑色区域了（注意，虽然在使用<code>cropdetect</code>滤镜时，指定了输出文件，但这个文件展示出来的画面还是保留着黑色区域的）。</p>
-<p>使用得到的裁剪区域，裁剪掉画面边缘的黑色区域：</p>
-<p><code>ffmpeg -i 1.mp4 -vf crop=720:256:0:232 -y 2.mp4</code></p>
+        <p>执行<code>apk add npm</code>出现错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ERROR: unable to select packages:</span><br><span class="line">  npm (no such package):</span><br><span class="line">    required by: world[npm]</span><br></pre></td></tr></table></figure>
+
+<p>解决方式：编辑<code>/etc/apk/repositories</code>，删除链接前面存在的<code>#</code>。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/12/ffmpeg-cli/%E7%AC%AC08%E7%AB%A0-%E8%A3%81%E5%89%AA%E7%94%BB%E9%9D%A2/" data-id="clguexvrg000e9pu37s7eaigq" data-title="第08章-裁剪画面" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2023/05/08/Alpine-Linux-unable-to-select-packages/" data-id="clhen1ied0000i8u3aivy4t93" data-title="Alpine Linux: unable to select packages" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FFmpeg-CLI/" rel="tag">FFmpeg-CLI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FFmpeg%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" rel="tag">FFmpeg命令行工具</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Alpine/" rel="tag">Alpine</a></li></ul>
 
     </footer>
   </div>
@@ -135,19 +116,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/11/13/ffmpeg-cli/%E7%AC%AC09%E7%AB%A0-%E7%BF%BB%E8%BD%AC%E7%94%BB%E9%9D%A2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          第09章-翻转画面
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/11/11/ffmpeg-cli/%E7%AC%AC07%E7%AB%A0-%E5%A1%AB%E5%85%85%E7%94%BB%E9%9D%A2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/04/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">第07章-填充画面</div>
+      <div class="article-nav-title">Hello World</div>
     </a>
   
 </nav>
