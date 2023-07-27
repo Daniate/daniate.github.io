@@ -24,10 +24,12 @@
 <meta property="og:description" content="改变播放速度改变视频帧播放速度，需要使用setpts滤镜 改变音频帧播放速度，需要使用atempo滤镜 如，修改为2倍速： 1ffmpeg -i input.mp4 -filter_complex &quot;[0:v]setpts&#x3D;expr&#x3D;1.0&#x2F;2*PTS;[0:a]atempo&#x3D;tempo&#x3D;2&quot; output.mp4">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-26T09:29:46.000Z">
-<meta property="article:modified_time" content="2023-04-23T13:12:37.439Z">
+<meta property="article:modified_time" content="2023-07-27T09:18:46.558Z">
 <meta property="article:author" content="Daniate">
 <meta property="article:tag" content="FFmpeg-CLI">
 <meta property="article:tag" content="FFmpeg命令行工具">
+<meta property="article:tag" content="流媒体">
+<meta property="article:tag" content="FFmpeg">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -277,7 +279,7 @@
                 <h1 id="改变播放速度"><a href="#改变播放速度" class="headerlink" title="改变播放速度"></a>改变播放速度</h1><p>改变视频帧播放速度，需要使用<code>setpts</code>滤镜</p>
 <p>改变音频帧播放速度，需要使用<code>atempo</code>滤镜</p>
 <p>如，修改为2倍速：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -filter_complex &quot;[0:v]setpts=expr=1.0/2*PTS;[0:a]atempo=tempo=2&quot; output.mp4</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">ffmpeg -<span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">input</span><span class="hljs-selector-class">.mp4</span> -filter_complex <span class="hljs-string">&quot;[0:v]setpts=expr=1.0/2*PTS;[0:a]atempo=tempo=2&quot;</span> output.mp4<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -292,6 +294,10 @@
         <a href="/tags/FFmpeg-CLI/" class="print-no-link">#FFmpeg-CLI</a>
       
         <a href="/tags/FFmpeg%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" class="print-no-link">#FFmpeg命令行工具</a>
+      
+        <a href="/tags/%E6%B5%81%E5%AA%92%E4%BD%93/" class="print-no-link">#流媒体</a>
+      
+        <a href="/tags/FFmpeg/" class="print-no-link">#FFmpeg</a>
       
     </div>
   

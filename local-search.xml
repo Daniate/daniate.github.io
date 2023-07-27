@@ -170,6 +170,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -181,7 +185,7 @@
     <link href="/2021/11/26/ffmpeg-cli/%E7%AC%AC22%E7%AB%A0-%E6%94%B9%E5%8F%98%E6%92%AD%E6%94%BE%E9%80%9F%E5%BA%A6/"/>
     <url>/2021/11/26/ffmpeg-cli/%E7%AC%AC22%E7%AB%A0-%E6%94%B9%E5%8F%98%E6%92%AD%E6%94%BE%E9%80%9F%E5%BA%A6/</url>
     
-    <content type="html"><![CDATA[<h1 id="改变播放速度"><a href="#改变播放速度" class="headerlink" title="改变播放速度"></a>改变播放速度</h1><p>改变视频帧播放速度，需要使用<code>setpts</code>滤镜</p><p>改变音频帧播放速度，需要使用<code>atempo</code>滤镜</p><p>如，修改为2倍速：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -filter_complex &quot;[0:v]setpts=expr=1.0/2*PTS;[0:a]atempo=tempo=2&quot; output.mp4</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="改变播放速度"><a href="#改变播放速度" class="headerlink" title="改变播放速度"></a>改变播放速度</h1><p>改变视频帧播放速度，需要使用<code>setpts</code>滤镜</p><p>改变音频帧播放速度，需要使用<code>atempo</code>滤镜</p><p>如，修改为2倍速：</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">ffmpeg -<span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">input</span><span class="hljs-selector-class">.mp4</span> -filter_complex <span class="hljs-string">&quot;[0:v]setpts=expr=1.0/2*PTS;[0:a]atempo=tempo=2&quot;</span> output.mp4<br></code></pre></td></tr></table></figure>]]></content>
     
     
     
@@ -190,6 +194,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -212,6 +220,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -232,6 +244,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -254,6 +270,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -274,6 +294,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -296,6 +320,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -307,7 +335,7 @@
     <link href="/2021/11/20/ffmpeg-cli/%E7%AC%AC16%E7%AB%A0-%E9%87%87%E9%9B%86/"/>
     <url>/2021/11/20/ffmpeg-cli/%E7%AC%AC16%E7%AB%A0-%E9%87%87%E9%9B%86/</url>
     
-    <content type="html"><![CDATA[<h1 id="采集"><a href="#采集" class="headerlink" title="采集"></a>采集</h1><p>采集包括录屏、录音、使用摄像头捕获画面。</p><h2 id="列出有哪些设备"><a href="#列出有哪些设备" class="headerlink" title="列出有哪些设备"></a>列出有哪些设备</h2><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p><code>ffmpeg -devices</code></p><p><img src="/images/media/16360762135795.jpg" alt="-w478"></p><p>列出<code>V4L2</code>可用的像素格式</p><p><code>ffmpeg -list_formats all -f v4l2 -i /dev/video0</code></p><p><img src="/images/media/16360760845257.jpg" alt="-w1179"><br><img src="/images/media/16360768819620.jpg" alt="-w789"></p><h3 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h3><p><code>ffmpeg -devices</code></p><p><img src="/images/media/16360758692577.jpg" alt="-w531"></p><p>列出<code>avfoundation</code>可用的设备：</p><p><code>ffmpeg -list_devices true -f avfoundation -i &#39;&#39;</code></p><p><img src="/images/media/16360758004569.jpg" alt="-w739"><br><img src="/images/media/16360763022159.jpg" alt="-w673"></p><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p><code>ffmpeg -devices</code></p><p><img src="/images/media/16360764417783.jpg" alt="-w478"></p><p><code>ffmpeg -list_devices true -f dshow -i &#39;&#39;</code></p><p><img src="/images/media/16360766865227.jpg" alt="-w1324"><br><img src="/images/media/16360767852515.jpg" alt="-w1401"></p><h2 id="录屏"><a href="#录屏" class="headerlink" title="录屏"></a>录屏</h2><h3 id="Linux-1"><a href="#Linux-1" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffplay -f x11grab \</span><br><span class="line">       -i :0.0</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f x11grab \</span><br><span class="line">       -i :0.0 \</span><br><span class="line">       out.mp4</span><br></pre></td></tr></table></figure><h3 id="macOS-1"><a href="#macOS-1" class="headerlink" title="macOS"></a>macOS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffplay -f avfoundation \</span><br><span class="line">       -pixel_format nv12 \</span><br><span class="line">       -probesize 10M \</span><br><span class="line">       -i <span class="string">&#x27;Capture screen 0&#x27;</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f avfoundation \</span><br><span class="line">       -pixel_format nv12 \</span><br><span class="line">       -probesize 10M \</span><br><span class="line">       -i <span class="string">&#x27;Capture screen 0&#x27;</span> \</span><br><span class="line">       out.mp4</span><br></pre></td></tr></table></figure><blockquote><p>不加入<code>-probesize</code>选项，会出现警告：<code>not enough frames to estimate rate; consider increasing probesize</code></p></blockquote><h3 id="Windows-1"><a href="#Windows-1" class="headerlink" title="Windows"></a>Windows</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffplay -f gdigrab \</span><br><span class="line">       -probesize 10M \</span><br><span class="line">       -i desktop</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f gdigrab \</span><br><span class="line">       -probesize 10M \</span><br><span class="line">       -i desktop \</span><br><span class="line">       out.mp4</span><br></pre></td></tr></table></figure><h2 id="采集摄像头画面-amp-采集声音"><a href="#采集摄像头画面-amp-采集声音" class="headerlink" title="采集摄像头画面 &amp; 采集声音"></a>采集摄像头画面 &amp; 采集声音</h2><h3 id="Linux-2"><a href="#Linux-2" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ffplay -f v4l2 \</span><br><span class="line">       -framerate 24 \</span><br><span class="line">       -video_size 640x480 \</span><br><span class="line">       -i /dev/video0 \</span><br><span class="line">       -f alsa \</span><br><span class="line">       -i default</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f v4l2 \</span><br><span class="line">       -framerate 24 \</span><br><span class="line">       -video_size 640x480 \</span><br><span class="line">       -i /dev/video0 \</span><br><span class="line">       -f alsa \</span><br><span class="line">       -i default \</span><br><span class="line">       out.mp4</span><br></pre></td></tr></table></figure><h3 id="macOS-2"><a href="#macOS-2" class="headerlink" title="macOS"></a>macOS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ffplay -f avfoundation \</span><br><span class="line">       -video_size 640x480 \</span><br><span class="line">       -framerate 30 \</span><br><span class="line">       -pixel_format nv12 \</span><br><span class="line">       -i <span class="string">&#x27;FaceTime高清摄像头（内建）:外置麦克风&#x27;</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f avfoundation \</span><br><span class="line">       -video_size 640x480 \</span><br><span class="line">       -framerate 30 \</span><br><span class="line">       -pixel_format nv12 \</span><br><span class="line">       -i <span class="string">&#x27;FaceTime高清摄像头（内建）:外置麦克风&#x27;</span> \</span><br><span class="line">       out.mp4</span><br></pre></td></tr></table></figure><h3 id="Windows-2"><a href="#Windows-2" class="headerlink" title="Windows"></a>Windows</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffplay -rtbufsize 256M \</span><br><span class="line">       -f dshow \</span><br><span class="line">       -i <span class="string">&quot;video=VMware Virtual USB Video Device:audio=Microphone (High Definition Audio Device)&quot;</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -rtbufsize 256M \</span><br><span class="line">       -f dshow \</span><br><span class="line">       -i <span class="string">&quot;video=VMware Virtual USB Video Device:audio=Microphone (High Definition Audio Device)&quot;</span> \</span><br><span class="line">       out.mp4</span><br></pre></td></tr></table></figure><blockquote><p>不加入<code>-rtbufsize</code>选项，可能会出现这样的警告信息：<code>real-time buffer [XXX XXX XXX] [video input] too full or near too full (80% of size: 3041280 [rtbufsize parameter])! frame dropped!</code>，将其设置为较大的值就可以解决</p></blockquote><h2 id="实战：采集视频，添加旋转的水印（徽标），并播放"><a href="#实战：采集视频，添加旋转的水印（徽标），并播放" class="headerlink" title="实战：采集视频，添加旋转的水印（徽标），并播放"></a>实战：采集视频，添加旋转的水印（徽标），并播放</h2><h3 id="Linux-3"><a href="#Linux-3" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f v4l2 \</span><br><span class="line">       -framerate 24 \</span><br><span class="line">       -video_size 640x480 \</span><br><span class="line">       -i /dev/video0 \</span><br><span class="line">       -loop <span class="literal">true</span> \</span><br><span class="line">       -i linux-logo-64.png \</span><br><span class="line">       -filter_complex <span class="string">&quot;[1:v]format=pix_fmts=rgba,rotate=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo];[0:v][logo]overlay=x=(W-w)/2:y=(H-h)/2&quot;</span> \</span><br><span class="line">       -pix_fmt yuv420p \</span><br><span class="line">       -f sdl \</span><br><span class="line">       <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f lavfi \</span><br><span class="line">       -i testsrc \</span><br><span class="line">       -loop <span class="literal">true</span> \</span><br><span class="line">       -i linux-logo-64.png \</span><br><span class="line">       -filter_complex <span class="string">&quot;[1:v]format=pix_fmts=rgba,rotate=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo];[0:v][logo]overlay=x=(W-w)/2:y=(H-h)/2&quot;</span> \</span><br><span class="line">       -pix_fmt yuv420p \</span><br><span class="line">       -f sdl \</span><br><span class="line">       <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure><h3 id="macOS-3"><a href="#macOS-3" class="headerlink" title="macOS"></a>macOS</h3><h4 id="loop-选项"><a href="#loop-选项" class="headerlink" title="-loop 选项"></a>-loop 选项</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f avfoundation \</span><br><span class="line">       -video_size 640x480 \</span><br><span class="line">       -framerate 30 \</span><br><span class="line">       -pixel_format nv12 \</span><br><span class="line">       -i 1 \</span><br><span class="line">       -loop <span class="literal">true</span> \</span><br><span class="line">       -i linux-logo-64.png \</span><br><span class="line">       -filter_complex <span class="string">&quot;[1:v]format=pix_fmts=rgba,rotate=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo];[0:v][logo]overlay=x=(W-w)/2:y=(H-h)/2&quot;</span> \</span><br><span class="line">       -pix_fmt yuv420p \</span><br><span class="line">       -f sdl \</span><br><span class="line">       <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure><h4 id="loop-滤镜"><a href="#loop-滤镜" class="headerlink" title="loop 滤镜"></a>loop 滤镜</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f avfoundation \</span><br><span class="line">       -video_size 640x480 \</span><br><span class="line">       -framerate 30 \</span><br><span class="line">       -pixel_format nv12 \</span><br><span class="line">       -i 1 \</span><br><span class="line">       -vf <span class="string">&quot;movie=filename=linux-logo-64.png,loop=loop=-1:size=1,format=pix_fmts=rgba,rotate=a=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo],[in][logo]overlay=x=(W-w)/2:y=(H-h)/2&quot;</span> \</span><br><span class="line">       -pix_fmt yuv420p \</span><br><span class="line">       -f sdl \</span><br><span class="line">       <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure><h3 id="Windows-3"><a href="#Windows-3" class="headerlink" title="Windows"></a>Windows</h3><h4 id="loop-滤镜-1"><a href="#loop-滤镜-1" class="headerlink" title="loop 滤镜"></a>loop 滤镜</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -rtbufsize 1024M \</span><br><span class="line">       -f dshow \</span><br><span class="line">       -i <span class="string">&quot;video=VMware Virtual USB Video Device&quot;</span> \</span><br><span class="line">       -vf <span class="string">&quot;movie=filename=linux-logo-64.png,loop=loop=-1:size=1,format=rgba,rotate=a=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo],[in][logo]overlay&quot;</span> \</span><br><span class="line">       -pix_fmt yuv420p \</span><br><span class="line">       -f sdl \</span><br><span class="line">       <span class="string">&#x27; &#x27;</span></span><br></pre></td></tr></table></figure><blockquote><p>还记得在<code>第03章</code>提到的内容吗？在<code>Windows</code>中，输出文件名不能是空字符串，但可以是空白字符串：<code>-f sdl</code>后面的<code>&#39; &#39;</code>。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="采集"><a href="#采集" class="headerlink" title="采集"></a>采集</h1><p>采集包括录屏、录音、使用摄像头捕获画面。</p><h2 id="列出有哪些设备"><a href="#列出有哪些设备" class="headerlink" title="列出有哪些设备"></a>列出有哪些设备</h2><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p><code>ffmpeg -devices</code></p><p><img src="/images/media/16360762135795.jpg" alt="-w478"></p><p>列出<code>V4L2</code>可用的像素格式</p><p><code>ffmpeg -list_formats all -f v4l2 -i /dev/video0</code></p><p><img src="/images/media/16360760845257.jpg" alt="-w1179"><br><img src="/images/media/16360768819620.jpg" alt="-w789"></p><h3 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h3><p><code>ffmpeg -devices</code></p><p><img src="/images/media/16360758692577.jpg" alt="-w531"></p><p>列出<code>avfoundation</code>可用的设备：</p><p><code>ffmpeg -list_devices true -f avfoundation -i &#39;&#39;</code></p><p><img src="/images/media/16360758004569.jpg" alt="-w739"><br><img src="/images/media/16360763022159.jpg" alt="-w673"></p><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p><code>ffmpeg -devices</code></p><p><img src="/images/media/16360764417783.jpg" alt="-w478"></p><p><code>ffmpeg -list_devices true -f dshow -i &#39;&#39;</code></p><p><img src="/images/media/16360766865227.jpg" alt="-w1324"><br><img src="/images/media/16360767852515.jpg" alt="-w1401"></p><h2 id="录屏"><a href="#录屏" class="headerlink" title="录屏"></a>录屏</h2><h3 id="Linux-1"><a href="#Linux-1" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffplay -f x11grab \<br>       -i :0.0<br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -f x11grab \<br>       -i :0.0 \<br>       out.mp4<br></code></pre></td></tr></table></figure><h3 id="macOS-1"><a href="#macOS-1" class="headerlink" title="macOS"></a>macOS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffplay -f avfoundation \<br>       -pixel_format nv12 \<br>       -probesize 10M \<br>       -i <span class="hljs-string">&#x27;Capture screen 0&#x27;</span><br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -f avfoundation \<br>       -pixel_format nv12 \<br>       -probesize 10M \<br>       -i <span class="hljs-string">&#x27;Capture screen 0&#x27;</span> \<br>       out.mp4<br></code></pre></td></tr></table></figure><blockquote><p>不加入<code>-probesize</code>选项，会出现警告：<code>not enough frames to estimate rate; consider increasing probesize</code></p></blockquote><h3 id="Windows-1"><a href="#Windows-1" class="headerlink" title="Windows"></a>Windows</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffplay -f gdigrab \<br>       -probesize 10M \<br>       -i desktop<br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -f gdigrab \<br>       -probesize 10M \<br>       -i desktop \<br>       out.mp4<br></code></pre></td></tr></table></figure><h2 id="采集摄像头画面-amp-采集声音"><a href="#采集摄像头画面-amp-采集声音" class="headerlink" title="采集摄像头画面 &amp; 采集声音"></a>采集摄像头画面 &amp; 采集声音</h2><h3 id="Linux-2"><a href="#Linux-2" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffplay -f v4l2 \<br>       -framerate 24 \<br>       -video_size 640x480 \<br>       -i /dev/video0 \<br>       -f alsa \<br>       -i default<br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -f v4l2 \<br>       -framerate 24 \<br>       -video_size 640x480 \<br>       -i /dev/video0 \<br>       -f alsa \<br>       -i default \<br>       out.mp4<br></code></pre></td></tr></table></figure><h3 id="macOS-2"><a href="#macOS-2" class="headerlink" title="macOS"></a>macOS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffplay -f avfoundation \<br>       -video_size 640x480 \<br>       -framerate 30 \<br>       -pixel_format nv12 \<br>       -i <span class="hljs-string">&#x27;FaceTime高清摄像头（内建）:外置麦克风&#x27;</span><br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -f avfoundation \<br>       -video_size 640x480 \<br>       -framerate 30 \<br>       -pixel_format nv12 \<br>       -i <span class="hljs-string">&#x27;FaceTime高清摄像头（内建）:外置麦克风&#x27;</span> \<br>       out.mp4<br></code></pre></td></tr></table></figure><h3 id="Windows-2"><a href="#Windows-2" class="headerlink" title="Windows"></a>Windows</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffplay -rtbufsize 256M \<br>       -f dshow \<br>       -i <span class="hljs-string">&quot;video=VMware Virtual USB Video Device:audio=Microphone (High Definition Audio Device)&quot;</span><br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -rtbufsize 256M \<br>       -f dshow \<br>       -i <span class="hljs-string">&quot;video=VMware Virtual USB Video Device:audio=Microphone (High Definition Audio Device)&quot;</span> \<br>       out.mp4<br></code></pre></td></tr></table></figure><blockquote><p>不加入<code>-rtbufsize</code>选项，可能会出现这样的警告信息：<code>real-time buffer [XXX XXX XXX] [video input] too full or near too full (80% of size: 3041280 [rtbufsize parameter])! frame dropped!</code>，将其设置为较大的值就可以解决</p></blockquote><h2 id="实战：采集视频，添加旋转的水印（徽标），并播放"><a href="#实战：采集视频，添加旋转的水印（徽标），并播放" class="headerlink" title="实战：采集视频，添加旋转的水印（徽标），并播放"></a>实战：采集视频，添加旋转的水印（徽标），并播放</h2><h3 id="Linux-3"><a href="#Linux-3" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -f v4l2 \<br>       -framerate 24 \<br>       -video_size 640x480 \<br>       -i /dev/video0 \<br>       -loop <span class="hljs-literal">true</span> \<br>       -i linux-logo-64.png \<br>       -filter_complex <span class="hljs-string">&quot;[1:v]format=pix_fmts=rgba,rotate=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo];[0:v][logo]overlay=x=(W-w)/2:y=(H-h)/2&quot;</span> \<br>       -pix_fmt yuv420p \<br>       -f sdl \<br>       <span class="hljs-string">&#x27;&#x27;</span><br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -f lavfi \<br>       -i testsrc \<br>       -loop <span class="hljs-literal">true</span> \<br>       -i linux-logo-64.png \<br>       -filter_complex <span class="hljs-string">&quot;[1:v]format=pix_fmts=rgba,rotate=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo];[0:v][logo]overlay=x=(W-w)/2:y=(H-h)/2&quot;</span> \<br>       -pix_fmt yuv420p \<br>       -f sdl \<br>       <span class="hljs-string">&#x27;&#x27;</span><br></code></pre></td></tr></table></figure><h3 id="macOS-3"><a href="#macOS-3" class="headerlink" title="macOS"></a>macOS</h3><h4 id="loop-选项"><a href="#loop-选项" class="headerlink" title="-loop 选项"></a>-loop 选项</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -f avfoundation \<br>       -video_size 640x480 \<br>       -framerate 30 \<br>       -pixel_format nv12 \<br>       -i 1 \<br>       -loop <span class="hljs-literal">true</span> \<br>       -i linux-logo-64.png \<br>       -filter_complex <span class="hljs-string">&quot;[1:v]format=pix_fmts=rgba,rotate=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo];[0:v][logo]overlay=x=(W-w)/2:y=(H-h)/2&quot;</span> \<br>       -pix_fmt yuv420p \<br>       -f sdl \<br>       <span class="hljs-string">&#x27;&#x27;</span><br></code></pre></td></tr></table></figure><h4 id="loop-滤镜"><a href="#loop-滤镜" class="headerlink" title="loop 滤镜"></a>loop 滤镜</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -f avfoundation \<br>       -video_size 640x480 \<br>       -framerate 30 \<br>       -pixel_format nv12 \<br>       -i 1 \<br>       -vf <span class="hljs-string">&quot;movie=filename=linux-logo-64.png,loop=loop=-1:size=1,format=pix_fmts=rgba,rotate=a=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo],[in][logo]overlay=x=(W-w)/2:y=(H-h)/2&quot;</span> \<br>       -pix_fmt yuv420p \<br>       -f sdl \<br>       <span class="hljs-string">&#x27;&#x27;</span><br></code></pre></td></tr></table></figure><h3 id="Windows-3"><a href="#Windows-3" class="headerlink" title="Windows"></a>Windows</h3><h4 id="loop-滤镜-1"><a href="#loop-滤镜-1" class="headerlink" title="loop 滤镜"></a>loop 滤镜</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -rtbufsize 1024M \<br>       -f dshow \<br>       -i <span class="hljs-string">&quot;video=VMware Virtual USB Video Device&quot;</span> \<br>       -vf <span class="hljs-string">&quot;movie=filename=linux-logo-64.png,loop=loop=-1:size=1,format=rgba,rotate=a=PI/6*t:ow=hypot(iw\,ih):oh=ow:c=0x00000000[logo],[in][logo]overlay&quot;</span> \<br>       -pix_fmt yuv420p \<br>       -f sdl \<br>       <span class="hljs-string">&#x27; &#x27;</span><br></code></pre></td></tr></table></figure><blockquote><p>还记得在<code>第03章</code>提到的内容吗？在<code>Windows</code>中，输出文件名不能是空字符串，但可以是空白字符串：<code>-f sdl</code>后面的<code>&#39; &#39;</code>。</p></blockquote>]]></content>
     
     
     
@@ -316,6 +344,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -328,7 +360,7 @@
     <link href="/2021/11/19/ffmpeg-cli/%E7%AC%AC15%E7%AB%A0-%E7%BB%98%E5%88%B6%E6%96%87%E6%9C%AC/"/>
     <url>/2021/11/19/ffmpeg-cli/%E7%AC%AC15%E7%AB%A0-%E7%BB%98%E5%88%B6%E6%96%87%E6%9C%AC/</url>
     
-    <content type="html"><![CDATA[<h1 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h1><h2 id="drawtext-滤镜"><a href="#drawtext-滤镜" class="headerlink" title="drawtext 滤镜"></a>drawtext 滤镜</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffplay -f lavfi \</span><br><span class="line">       -i testsrc \</span><br><span class="line">       -vf <span class="string">&quot;drawtext=fontfile=站酷庆科黄油体.ttf:text=&#x27;Hello world!&#x27;:fontsize=32:fontcolor=red:bordercolor=green:borderw=5:x=(sin(t)+1)*w/2:y=(cos(t)+1)*h/2&quot;</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i mandelbrot.mp4 \</span><br><span class="line">       -vf <span class="string">&quot;drawtext=fontfile=站酷庆科黄油体.ttf:text=&#x27;Hello world!&#x27;:fontsize=64:fontcolor=red:bordercolor=green:borderw=5&quot;</span> \</span><br><span class="line">       mandelbrot-drawtext.mp4</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h1><h2 id="drawtext-滤镜"><a href="#drawtext-滤镜" class="headerlink" title="drawtext 滤镜"></a>drawtext 滤镜</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffplay -f lavfi \<br>       -i testsrc \<br>       -vf <span class="hljs-string">&quot;drawtext=fontfile=站酷庆科黄油体.ttf:text=&#x27;Hello world!&#x27;:fontsize=32:fontcolor=red:bordercolor=green:borderw=5:x=(sin(t)+1)*w/2:y=(cos(t)+1)*h/2&quot;</span><br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -i mandelbrot.mp4 \<br>       -vf <span class="hljs-string">&quot;drawtext=fontfile=站酷庆科黄油体.ttf:text=&#x27;Hello world!&#x27;:fontsize=64:fontcolor=red:bordercolor=green:borderw=5&quot;</span> \<br>       mandelbrot-drawtext.mp4<br></code></pre></td></tr></table></figure>]]></content>
     
     
     
@@ -337,6 +369,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -359,6 +395,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -379,6 +419,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -401,6 +445,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -421,6 +469,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -443,6 +495,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -463,6 +519,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -485,6 +545,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -505,6 +569,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -527,6 +595,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -547,6 +619,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -569,6 +645,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -589,6 +669,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
@@ -611,6 +695,10 @@
       
       <tag>FFmpeg命令行工具</tag>
       
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
+      
     </tags>
     
   </entry>
@@ -631,6 +719,10 @@
       <tag>FFmpeg-CLI</tag>
       
       <tag>FFmpeg命令行工具</tag>
+      
+      <tag>流媒体</tag>
+      
+      <tag>FFmpeg</tag>
       
     </tags>
     
