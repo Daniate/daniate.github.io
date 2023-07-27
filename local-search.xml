@@ -8,7 +8,7 @@
     <link href="/2023/05/08/Alpine-Linux-unable-to-select-packages/"/>
     <url>/2023/05/08/Alpine-Linux-unable-to-select-packages/</url>
     
-    <content type="html"><![CDATA[<p>执行<code>apk add npm</code>出现错误：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ERROR: unable to select packages:</span><br><span class="line">  npm (no such package):</span><br><span class="line">    required by: world[npm]</span><br></pre></td></tr></table></figure><p>解决方式：编辑<code>/etc/apk/repositories</code>，删除链接前面存在的<code>#</code>。</p>]]></content>
+    <content type="html"><![CDATA[<p>执行<code>apk add npm</code>出现错误：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">ERROR: unable to select packages:<br>  npm (no such package):<br>    required by: world[npm]<br></code></pre></td></tr></table></figure><p>解决方式：编辑<code>/etc/apk/repositories</code>，删除链接前面存在的<code>#</code>。</p>]]></content>
     
     
     
