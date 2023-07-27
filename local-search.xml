@@ -714,6 +714,8 @@
       
       <tag>OpenGL ES</tag>
       
+      <tag>OpenGL</tag>
+      
     </tags>
     
   </entry>
@@ -735,6 +737,8 @@
       
       <tag>OpenGL ES</tag>
       
+      <tag>OpenGL</tag>
+      
     </tags>
     
   </entry>
@@ -755,6 +759,8 @@
       <tag>GLKit</tag>
       
       <tag>OpenGL ES</tag>
+      
+      <tag>OpenGL</tag>
       
     </tags>
     
