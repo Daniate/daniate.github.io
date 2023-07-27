@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Daniate">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="引子苹果发布iOS 6.0时，为开发者提供了视图布局的利器——Auto Layout，用于替代Frame-Based Layout，以轻松方便地达到不同尺寸屏幕上界面的兼容适配。 Auto Layout对应着一套constraint-based layout system（基于约束的布局系统），这套系统所使用的策略如下： item1.attribute1 &#x3D; multiplier × item2.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSLayoutAnchor">
+<meta property="og:url" content="https://daniate.github.io/2017/03/01/NSLayoutAnchor/index.html">
+<meta property="og:site_name" content="Daniate">
+<meta property="og:description" content="引子苹果发布iOS 6.0时，为开发者提供了视图布局的利器——Auto Layout，用于替代Frame-Based Layout，以轻松方便地达到不同尺寸屏幕上界面的兼容适配。 Auto Layout对应着一套constraint-based layout system（基于约束的布局系统），这套系统所使用的策略如下： item1.attribute1 &#x3D; multiplier × item2.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-01T11:11:00.000Z">
+<meta property="article:modified_time" content="2023-07-27T07:12:49.237Z">
+<meta property="article:author" content="Daniate">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>NSLayoutAnchor - Daniate</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"daniate.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="NSLayoutAnchor"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-03-01 19:11" pubdate>
+          2017年3月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">NSLayoutAnchor</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>苹果发布<code>iOS 6.0</code>时，为开发者提供了视图布局的利器——<code>Auto Layout</code>，用于替代<code>Frame-Based Layout</code>，以轻松方便地达到不同尺寸屏幕上界面的兼容适配。</p>
+<p><code>Auto Layout</code>对应着一套<code>constraint-based layout system</code>（基于约束的布局系统），这套系统所使用的策略如下：</p>
+<p><code>item1.attribute1 = multiplier × item2.attribute2 + constant</code></p>
+<blockquote>
+<p>上面出现的<code>=</code>，表示的是<code>等于</code>，而非<code>赋值</code>。另外，其中的<code>=</code>，也可以是<code>&gt;=</code>、<code>&lt;=</code>。</p>
+</blockquote>
+<p>对应地，有一个名为<code>NSLayoutConstraint</code>的类，用于构建相关的约束，其用于构建约束的方法如下：</p>
+<ol>
+<li><code>+ constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:</code></li>
+<li><code>+ constraintsWithVisualFormat:options:metrics:views:</code></li>
+</ol>
+<p>一眼看上去，就能发现，第一个方法正好与上面提到的策略是一致的。</p>
+<p>第二个方法，使用了所谓的<code>Visual Format Language</code>，比起第一个方法，复杂难用程度直接上升了一个台阶。比如<code>V:[topField]-10-[bottomField]</code>，其语法十分复杂，而且，改动视图对应的变量名称，也得修改这里面的内容，十分难用，因此，大多数开发者会选择使用第一种方法。</p>
+<p>但很明显，如果视图中有很多约束，第一种方法用得多了，代码也是又臭又长，就显得不那么简洁明晰，因此也深受诟病，这就促使聪明的开发者创造出一些了不起的第三方类库，<code>SnapKit</code>出品的<a target="_blank" rel="noopener" href="https://github.com/SnapKit/Masonry">Masonry</a>、<a target="_blank" rel="noopener" href="https://github.com/SnapKit/SnapKit">SnapKit</a>就深受开发者的喜爱，已形成垄断，其它自动布局相关的第三方类库都在夹缝中生存。</p>
+<h2 id="NSLayoutAnchor简述"><a href="#NSLayoutAnchor简述" class="headerlink" title="NSLayoutAnchor简述"></a><code>NSLayoutAnchor</code>简述</h2><p>苹果应该是了解到了相应的弊端，在发布<code>iOS 9.0</code>时，又提供了<code>NSLayoutAnchor</code>这样一个用于创建<code>NSLayoutConstraint</code>的工厂类。</p>
+<p>使用<code>NSLayoutAnchor API</code>能让代码更简洁明晰，也更加易读，另外也提供了额外的类型检查，可以避免创建非法无效的约束。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// Creating constraints using NSLayoutConstraint</span><br><span class="hljs-title function_ invoke__">NSLayoutConstraint</span>(<span class="hljs-attr">item</span>: subview,<br>                   <span class="hljs-attr">attribute</span>: .Leading,<br>                   <span class="hljs-attr">relatedBy</span>: .Equal,<br>                   <span class="hljs-attr">toItem</span>: view,<br>                   <span class="hljs-attr">attribute</span>: .LeadingMargin,<br>                   <span class="hljs-attr">multiplier</span>: <span class="hljs-number">1.0</span>,<br>                   <span class="hljs-attr">constant</span>: <span class="hljs-number">0.0</span>).active = <span class="hljs-literal">true</span><br> <br><span class="hljs-title function_ invoke__">NSLayoutConstraint</span>(<span class="hljs-attr">item</span>: subview,<br>                   <span class="hljs-attr">attribute</span>: .Trailing,<br>                   <span class="hljs-attr">relatedBy</span>: .Equal,<br>                   <span class="hljs-attr">toItem</span>: view,<br>                   <span class="hljs-attr">attribute</span>: .TrailingMargin,<br>                   <span class="hljs-attr">multiplier</span>: <span class="hljs-number">1.0</span>,<br>                   <span class="hljs-attr">constant</span>: <span class="hljs-number">0.0</span>).active = <span class="hljs-literal">true</span><br> <br> <br><span class="hljs-comment">// Creating the same constraints using Layout Anchors</span><br>let margins = view.layoutMarginsGuide<br>subview.leadingAnchor.<span class="hljs-title function_ invoke__">constraintEqualToAnchor</span>(margins.leadingAnchor).active = <span class="hljs-literal">true</span><br>subview.trailingAnchor.<span class="hljs-title function_ invoke__">constraintEqualToAnchor</span>(margins.trailingAnchor).active = <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<p>很明显，使用<code>NSLayoutAnchor API</code>确实很大程度地减少了代码量，也更加明晰。</p>
+<blockquote>
+<p>注意：<br>尽管提供了类型检查，但还是有可能创建出非法无效的约束。比如，由于<code>leadingAnchor</code>和<code>leftAnchor</code>都是<code>NSLayoutXAxisAnchor</code>，因此编译器允许在它们之间形成约束，但<code>Auto Layout</code>并不允许出现这样的混淆，因此，在运行时会出现崩溃。</p>
+</blockquote>
+<p>在使用<code>NSLayoutAnchor</code>时，并不是直接使用这个类，而是使用其具体的子类：</p>
+<ul>
+<li><code>NSLayoutXAxisAnchor</code>用于创建水平约束</li>
+<li><code>NSLayoutYAxisAnchor</code>用于创建竖直约束</li>
+<li><code>NSLayoutDimension</code>用于创建与视图宽高相关的约束</li>
+</ul>
+<p>在<code>UIKit/UIView.h</code>中，可以看到以下内容，很明显，都是具体的子类：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-class"><span class="hljs-keyword">@class</span> <span class="hljs-title">NSLayoutXAxisAnchor</span>,<span class="hljs-title">NSLayoutYAxisAnchor</span>,<span class="hljs-title">NSLayoutDimension</span>;</span><br><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">UIView</span> (<span class="hljs-title">UIViewLayoutConstraintCreation</span>)</span><br><span class="hljs-comment">/* Constraint creation conveniences. See NSLayoutAnchor.h for details.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutXAxisAnchor</span> *leadingAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutXAxisAnchor</span> *trailingAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutXAxisAnchor</span> *leftAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutXAxisAnchor</span> *rightAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutYAxisAnchor</span> *topAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutYAxisAnchor</span> *bottomAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutDimension</span> *widthAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutDimension</span> *heightAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutXAxisAnchor</span> *centerXAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutYAxisAnchor</span> *centerYAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutYAxisAnchor</span> *firstBaselineAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><span class="hljs-keyword">@property</span>(<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSLayoutYAxisAnchor</span> *lastBaselineAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">9</span>_0);<br><br><span class="hljs-keyword">@end</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="在低版本系统中使用NSLayoutAnchor这样的API"><a href="#在低版本系统中使用NSLayoutAnchor这样的API" class="headerlink" title="在低版本系统中使用NSLayoutAnchor这样的API"></a>在低版本系统中使用<code>NSLayoutAnchor</code>这样的<code>API</code></h2><p>我仿照<code>NSLayoutAnchor API</code>写了<a target="_blank" rel="noopener" href="https://github.com/Daniate/DGLayoutAnchor">DGLayoutAnchor</a>，可以在<code>iOS 6.0</code>及更高版本中使用，其使用方式与<code>NSLayoutAnchor</code>完全一模一样。</p>
+<p>不过，得使用下面的这些锚点：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@interface</span> UIView (DGLayoutAnchor)<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_leadingAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_trailingAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_leftAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_rightAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutYAxisAnchor *dg_topAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutYAxisAnchor *dg_bottomAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutDimension   *dg_widthAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutDimension   *dg_heightAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_centerXAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutYAxisAnchor *dg_centerYAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutYAxisAnchor *dg_firstBaselineAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">8</span>_0);<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutYAxisAnchor *dg_lastBaselineAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutYAxisAnchor *dg_baselineAnchor;<span class="hljs-comment">// same as `dg_lastBaselineAnchor`</span><br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_leftMarginAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">8</span>_0);<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_rightMarginAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">8</span>_0);<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutYAxisAnchor *dg_topMarginAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">8</span>_0);<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutYAxisAnchor *dg_bottomMarginAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">8</span>_0);<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_leadingMarginAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">8</span>_0);<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_trailingMarginAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">8</span>_0);<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutXAxisAnchor *dg_centerXWithinMarginsAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">8</span>_0);<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutYAxisAnchor *dg_centerYWithinMarginsAnchor <span class="hljs-built_in">NS_AVAILABLE_IOS</span>(<span class="hljs-number">8</span>_0);<br><span class="hljs-variable">@end</span><br><br><span class="hljs-variable">@interface</span> UIViewController (DGLayoutAnchor)<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutGuideAnchor *dg_topLayoutGuideTopAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutGuideAnchor *dg_topLayoutGuideBottomAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutGuideAnchor *dg_bottomLayoutGuideTopAnchor;<br><span class="hljs-variable">@property</span> (readonly, strong) DGLayoutGuideAnchor *dg_bottomLayoutGuideBottomAnchor;<br><span class="hljs-variable">@end</span><br></code></pre></td></tr></table></figure>
+
+<p>使用示例：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-built_in">NSLayoutConstraint</span> *lc1 = [v.dg_topAnchor equalTo:<span class="hljs-keyword">self</span>.dg_topLayoutGuideBottomAnchor constant:<span class="hljs-number">10</span>];<br><span class="hljs-built_in">NSLayoutConstraint</span> *lc2 = [v.dg_leadingAnchor equalTo:<span class="hljs-keyword">self</span>.view.dg_leadingMarginAnchor];<br><span class="hljs-built_in">NSLayoutConstraint</span> *lc3 = [<span class="hljs-keyword">self</span>.dg_bottomLayoutGuideTopAnchor equalTo:v.dg_bottomAnchor constant:<span class="hljs-number">10</span>];<br><span class="hljs-built_in">NSLayoutConstraint</span> *lc4 = [v.dg_trailingAnchor equalTo:<span class="hljs-keyword">self</span>.view.dg_trailingMarginAnchor];<br></code></pre></td></tr></table></figure>
+
+<h2 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h2><p>比起<a target="_blank" rel="noopener" href="https://github.com/SnapKit/Masonry">Masonry</a>、<a target="_blank" rel="noopener" href="https://github.com/SnapKit/SnapKit">SnapKit</a>，<code>NSLayoutAnchor API</code>还是有些小巫见大巫，在这两个优秀的第三方类库面前，苹果所提供的创建约束的<code>API</code>完全不能在开发者中流行起来，它们完全处在<a target="_blank" rel="noopener" href="https://github.com/SnapKit/Masonry">Masonry</a>、<a target="_blank" rel="noopener" href="https://github.com/SnapKit/SnapKit">SnapKit</a>大厦的地基之中，早已被开发者所唾弃、抛弃。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>NSLayoutAnchor</div>
+      <div>https://daniate.github.io/2017/03/01/NSLayoutAnchor/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Daniate</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2017年3月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/03/12/%E4%B8%80%E5%A4%84JSON%E5%A4%84%E7%90%86%E4%B8%8A%E7%9A%84%E5%B0%8F%E7%BB%86%E8%8A%82/" title="一处JSON处理上的小细节">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一处JSON处理上的小细节</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/02/23/dispatch%20semaphore/" title="dispatch semaphore">
+                        <span class="hidden-mobile">dispatch semaphore</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
