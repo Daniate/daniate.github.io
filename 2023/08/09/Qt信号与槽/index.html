@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Daniate">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="参考资料：  Qt帮助文档中的《Signals &amp; Slots》   作用用于在对象之间建立通信。 当发生某个事件时，信号会被发出，槽函数会被调用，以响应某个信号。 信号和槽机制是类型安全的：信号的签名必须与槽的签名匹配（实际上，一个槽的签名可能比它接收到的信号的签名要短，它可以忽略信号传递过来的额外的参数)。 信号和槽是松耦合的：发出信号的类既不知道也不关心哪个槽会接收信号。 所有从Q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt信号与槽">
+<meta property="og:url" content="https://daniate.github.io/2023/08/09/Qt%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD/index.html">
+<meta property="og:site_name" content="Daniate">
+<meta property="og:description" content="参考资料：  Qt帮助文档中的《Signals &amp; Slots》   作用用于在对象之间建立通信。 当发生某个事件时，信号会被发出，槽函数会被调用，以响应某个信号。 信号和槽机制是类型安全的：信号的签名必须与槽的签名匹配（实际上，一个槽的签名可能比它接收到的信号的签名要短，它可以忽略信号传递过来的额外的参数)。 信号和槽是松耦合的：发出信号的类既不知道也不关心哪个槽会接收信号。 所有从Q">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-09T07:54:09.000Z">
+<meta property="article:modified_time" content="2023-08-09T07:56:18.069Z">
+<meta property="article:author" content="Daniate">
+<meta property="article:tag" content="Qt">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Qt信号与槽 - Daniate</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"daniate.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Qt信号与槽"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-09 15:54" pubdate>
+          2023年8月9日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Qt信号与槽</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>参考资料：</p>
+<ul>
+<li>Qt帮助文档中的《Signals &amp; Slots》</li>
+</ul>
+</blockquote>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>用于在对象之间建立通信。</p>
+<p>当发生某个事件时，信号会被发出，槽函数会被调用，以响应某个信号。</p>
+<p>信号和槽机制是类型安全的：信号的签名必须与槽的签名匹配（实际上，一个槽的签名可能比它接收到的信号的签名要短，它可以忽略信号传递过来的额外的参数)。</p>
+<p>信号和槽是松耦合的：发出信号的类既不知道也不关心哪个槽会接收信号。</p>
+<p>所有从<code>QObject</code>或其子类（例如，QWidget）继承的类都可以包含信号和槽。</p>
+<p>槽可以用来接收信号，但也是普通的成员函数。</p>
+<p>信号与槽之间的连接可以是<strong>多对一</strong>的，也可以是<strong>一对多</strong>的。</p>
+<p>信号与信号之间也可以建立连接。</p>
+<h2 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h2><p><strong>信号是公共访问函数，且必须没有返回值</strong>，可以从任何地方发出，但我们建议只从定义信号及其子类的类发出信号。</p>
+<p>当发出信号时，连接到它的槽<strong>通常</strong>立即执行，就像普通的函数调用一样，当这种情况发生时，信号和槽机制完全独立于任何<code>GUI</code>事件循环，一旦所有槽都返回，<code>emit</code>语句之后的代码就会执行。</p>
+<p>当使用队列连接时，情况略有不同，在这种情况下，emit关键字后面的代码将立即继续执行，而槽将稍后执行。</p>
+<p>如果多个槽连接到一个信号，则在信号发出时，这些槽将按照它们连接的顺序依次执行。</p>
+<p>信号是由<code>moc</code>自动生成的，不能在<code>.cpp</code>文件中实现。它们不能有返回类型(即必须使用<code>void</code>)。</p>
+<p>语法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">signals:<br>    <span class="hljs-type">void</span> 信号名称(参数);<br></code></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">signals:<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">xxSig</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">double</span> d)</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="槽"><a href="#槽" class="headerlink" title="槽"></a>槽</h2><p>当一个连接到槽的信号发出时，就会调用这个槽。</p>
+<p>槽是普通的<code>C++</code>函数，可以正常调用，与其他函数不同的是，信号可以与它们建立连接。</p>
+<p>与回调相比，信号和槽稍微慢一些，原因在于需要定位连接对象、安全地遍历所有连接以及处理参数所需的开销。</p>
+<p>注意，在与基于<code>Qt</code>的应用程序一起编译时，定义称为信号或槽的变量的其他库可能会导致编译器警告和错误。要解决这个问题，需要使用#undef屏蔽掉有问题的预处理器符号。</p>
+<p>所有包含信号或槽的类必须在声明的顶部提到<code>Q_OBJECT</code>。这些类还**必须(直接或间接)**派生自<code>QObject</code>。</p>
+<p>槽函数需要有实现。</p>
+<p>可以通过一个<code>disconnect()</code>中断所有连接。如果使用了<code>Qt::UniqueConnection</code>，则只有在不重复的情况下才会进行连接；如果已经有一个重复的信号(相同对象上相同槽的相同信号)，连接将会失败，<code>connect()</code>会返回<code>false</code>。</p>
+<p>语法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">slots:<br>    [public|protected|private] <span class="hljs-type">void</span> 槽名称(参数);<br></code></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">public slots:<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">xxSigHandler</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="信号与槽的连接"><a href="#信号与槽的连接" class="headerlink" title="信号与槽的连接"></a>信号与槽的连接</h2><p>使用<code>connect()</code>函数进行连接：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">static</span> QMetaObject::Connection <span class="hljs-title function_">connect</span><span class="hljs-params">(</span><br><span class="hljs-params">    <span class="hljs-type">const</span> QObject *sender, </span><br><span class="hljs-params">    <span class="hljs-type">const</span> <span class="hljs-type">char</span> *signal, </span><br><span class="hljs-params">    <span class="hljs-type">const</span> QObject *receiver, </span><br><span class="hljs-params">    <span class="hljs-type">const</span> <span class="hljs-type">char</span> *member, </span><br><span class="hljs-params">    Qt::ConnectionType = Qt::AutoConnection</span><br><span class="hljs-params">)</span>;<br><br><span class="hljs-type">static</span> QMetaObject::Connection <span class="hljs-title function_">connect</span><span class="hljs-params">(</span><br><span class="hljs-params">    <span class="hljs-type">const</span> QObject *sender, </span><br><span class="hljs-params">    <span class="hljs-type">const</span> QMetaMethod &amp;signal, </span><br><span class="hljs-params">    <span class="hljs-type">const</span> QObject *receiver, </span><br><span class="hljs-params">    <span class="hljs-type">const</span> QMetaMethod &amp;method, </span><br><span class="hljs-params">    Qt::ConnectionType type = Qt::AutoConnection</span><br><span class="hljs-params">)</span>;<br><br><span class="hljs-keyword">inline</span> QMetaObject::Connection <span class="hljs-title function_">connect</span><span class="hljs-params">(</span><br><span class="hljs-params">    <span class="hljs-type">const</span> QObject *sender, </span><br><span class="hljs-params">    <span class="hljs-type">const</span> <span class="hljs-type">char</span> *signal, </span><br><span class="hljs-params">    <span class="hljs-type">const</span> <span class="hljs-type">char</span> *member, </span><br><span class="hljs-params">    Qt::ConnectionType type = Qt::AutoConnection</span><br><span class="hljs-params">)</span> <span class="hljs-type">const</span>;<br><br>template &lt;typename Func1, typename Func2&gt;<br><span class="hljs-type">static</span> <span class="hljs-keyword">inline</span> QMetaObject::Connection <span class="hljs-title function_">connect</span><span class="hljs-params">(</span><br><span class="hljs-params">    <span class="hljs-type">const</span> typename QtPrivate::FunctionPointer&lt;Func1&gt;::Object *sender, </span><br><span class="hljs-params">    Func1 signal, </span><br><span class="hljs-params">    <span class="hljs-type">const</span> typename QtPrivate::FunctionPointer&lt;Func2&gt;::Object *receiver, </span><br><span class="hljs-params">    Func2 slot, </span><br><span class="hljs-params">    Qt::ConnectionType type = Qt::AutoConnection</span><br><span class="hljs-params">)</span>;<br><br>template &lt;typename Func1, typename Func2&gt;<br><span class="hljs-type">static</span> <span class="hljs-keyword">inline</span> typename <span class="hljs-built_in">std</span>::enable_if&lt;<span class="hljs-type">int</span>(QtPrivate::FunctionPointer&lt;Func2&gt;::ArgumentCount) &gt;= <span class="hljs-number">0</span>, QMetaObject::Connection&gt;::type <br>connect(<br>    <span class="hljs-type">const</span> typename QtPrivate::FunctionPointer&lt;Func1&gt;::Object *sender, <br>    Func1 signal, <br>    Func2 slot<br>);<br></code></pre></td></tr></table></figure>
+<h3 id="信号槽连接的几种方式"><a href="#信号槽连接的几种方式" class="headerlink" title="信号槽连接的几种方式"></a>信号槽连接的几种方式</h3><p>可以通过以下3种方式进行连接：</p>
+<ol>
+<li><code>SIGNAL</code>和<code>SLOT</code>宏（字符串形式）</li>
+<li>函数指针</li>
+<li><code>C++11</code>的<code>lambda</code>表达式</li>
+</ol>
+<h4 id="SIGNAL和SLOT宏"><a href="#SIGNAL和SLOT宏" class="headerlink" title="SIGNAL和SLOT宏"></a><code>SIGNAL</code>和<code>SLOT</code>宏</h4><p>这两个宏，会把传入的内容转换为字符串，它们的定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> SIGNAL(arg) #arg</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SLOT(arg) #arg</span><br></code></pre></td></tr></table></figure>
+
+<p>传入<code>SIGNAL</code>宏的函数签名的参数个数不能比传入<code>SLOT</code>宏的函数签名的参数个数少。</p>
+<p>也就是说，信号的参数个数需要<strong>大于或等于</strong>槽的参数个数，且信号中的前<code>N</code>个参数必须要与对应的槽参数的<strong>类型相同</strong>（<code>N</code>为槽函数中参数的个数），否则在<code>Qt Creator</code>中会出现：</p>
+<p><code>QObject::connect: Incompatible sender/receiver arguments</code></p>
+<p>传入<code>SLOT</code>宏的可以是成员函数、静态函数、<code>lambda</code>表达式。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">connect(sender, SIGNAL(destroyed(QObject*)), this, SLOT(objectDestroyed(Qbject*)));<br>connect(sender, SIGNAL(destroyed(QObject*)), this, SLOT(objectDestroyed()));<br>connect(sender, SIGNAL(destroyed()), this, SLOT(objectDestroyed()));<br></code></pre></td></tr></table></figure>
+<h4 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h4><p>此时，槽函数必须是一个普通成员函数或静态函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">connect(sender, &amp;QObject::destroyed, this, &amp;MyObject::objectDestroyed);<br></code></pre></td></tr></table></figure>
+
+<p>信号或槽有重载时，如果直接传入函数指针，则无法判断到底要使用哪个信号、哪个槽，此时，需要通过<code>QOverload</code>或<strong>显式创建指针变量</strong>进行处理：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c">signals:<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">brake</span><span class="hljs-params">(<span class="hljs-type">int</span> force)</span>;<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">brake</span><span class="hljs-params">(<span class="hljs-type">int</span> force, <span class="hljs-type">int</span> a)</span>;<br>public slots:<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">stopRunning</span><span class="hljs-params">(<span class="hljs-type">double</span> force)</span>;<br><br><span class="hljs-comment">// 使用QOverload</span><br>connect(&amp;car, qOverload&lt;<span class="hljs-type">int</span>&gt;(&amp;Car::brake), &amp;car, &amp;Car::stopRunning);<br>connect(&amp;car, qOverload&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;(&amp;Car::brake), &amp;car, &amp;Car::stopRunning);<br><span class="hljs-comment">// 使用指针变量</span><br><span class="hljs-type">void</span> (Car::*ptr1)(<span class="hljs-type">int</span>) = &amp;Car::brake;<br><span class="hljs-type">void</span> (Car::*ptr2)(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>) = &amp;Car::brake;<br>connect(&amp;car, ptr1, &amp;car, &amp;Car::stopRunning);<br>connect(&amp;car, ptr2, &amp;car, &amp;Car::stopRunning);<br></code></pre></td></tr></table></figure>
+
+<p>使用函数指针进行信号与槽的连接，有以下优势：</p>
+<ol>
+<li>编译器可以检查信号参数与槽参数是否兼容（编译期检测）</li>
+<li>如有必要，编译器会对参数进行转换（比如，double转int，int转double）</li>
+</ol>
+<h4 id="C-11的lambda表达式"><a href="#C-11的lambda表达式" class="headerlink" title="C++11的lambda表达式"></a><code>C++11</code>的<code>lambda</code>表达式</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">connect(sender, &amp;QObject::destroyed, this, [=]()&#123;<br>    this-&gt;m_objects.remove(sender);<br>&#125;);<br></code></pre></td></tr></table></figure>
+<h3 id="Qt-ConnectionType"><a href="#Qt-ConnectionType" class="headerlink" title="Qt::ConnectionType"></a>Qt::ConnectionType</h3><table>
+<thead>
+<tr>
+<th>序号</th>
+<th align="left">类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td align="left">Qt::AutoConnection</td>
+<td align="left">默认。如果接收者与发送的信号在同一个线程中，则使用Qt::DirectConnection；否则，则使用Qt::QueuedConnection。具体使用哪个，是在信号发送时才确定的。</td>
+</tr>
+<tr>
+<td>2</td>
+<td align="left">Qt::DirectConnection</td>
+<td align="left">信号发送时，槽函数立刻执行。槽函数在信号发送线程中执行。</td>
+</tr>
+<tr>
+<td>3</td>
+<td align="left">Qt::QueuedConnection</td>
+<td align="left">槽函数在控制权交还给接收线程的运行循环时执行。槽函数在接收线程中执行。</td>
+</tr>
+<tr>
+<td>4</td>
+<td align="left">Qt::BlockingQueuedConnection</td>
+<td align="left">与Qt::QueuedConnection一样，但信号线程会一直阻塞，直到槽函数返回，因此信号线程与接收线程不能是同一个，否则会发生死锁。</td>
+</tr>
+<tr>
+<td>5</td>
+<td align="left">Qt::UniqueConnection</td>
+<td align="left">可以与上述几种类型结合使用（使用按位或“|”），如果连接已经存在，那么新的连接将会失败。Qt 4.6引入。</td>
+</tr>
+<tr>
+<td>6</td>
+<td align="left">Qt::SingleShotConnection</td>
+<td align="left">可以与上述几种类型结合使用（使用按位或“|”），槽函数只会执行一次，当信号发送时，连接会自动断开。Qt 6.0引入。</td>
+</tr>
+</tbody></table>
+<h3 id="在信号、槽中使用自定义类型的参数"><a href="#在信号、槽中使用自定义类型的参数" class="headerlink" title="在信号、槽中使用自定义类型的参数"></a>在信号、槽中使用自定义类型的参数</h3><p>如果调用<code>connect</code>函数时，<code>Qt::ConnectionType</code>设置的是<code>Qt::QueuedConnection</code>，那么，自定义类型必须是<code>Qt</code>元对象系统所知道的类型，否则在连接时会报错。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> MYOBJECT_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MYOBJECT_H</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QObject&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;MyCustomType.h&quot;</span></span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyObject</span> :</span> public QObject<br>&#123;<br>    Q_OBJECT<br>public:<br>    explicit <span class="hljs-title function_">MyObject</span><span class="hljs-params">(QObject *parent = nullptr)</span>;<br><br>private:<br><br>signals:<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">customTypeSig</span><span class="hljs-params">(MyCustomType val)</span>;<br><br>public slots:<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">handlerCustomType</span><span class="hljs-params">(MyCustomType val)</span>;<br>&#125;;<br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// MYOBJECT_H</span></span><br></code></pre></td></tr></table></figure>
+
+<p>注意，最后一个参数是<code>Qt::QueuedConnection</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">connect(&amp;obj, &amp;MyObject::customTypeSig, &amp;obj, &amp;MyObject::handlerCustomType, Qt::QueuedConnection);<br></code></pre></td></tr></table></figure>
+
+<p>错误信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">QObject::connect: Cannot <span class="hljs-built_in">queue</span> arguments of type <span class="hljs-string">&#x27;MyCustomType&#x27;</span><br>(Make sure <span class="hljs-string">&#x27;MyCustomType&#x27;</span> is registered using qRegisterMetaType().)<br></code></pre></td></tr></table></figure>
+
+<p>需要在连接前，加入：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">Q_DECLARE_METATYPE(MyCustomType)<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Qt/" class="print-no-link">#Qt</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Qt信号与槽</div>
+      <div>https://daniate.github.io/2023/08/09/Qt信号与槽/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Daniate</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/09/Qt%E8%AE%BE%E7%BD%AE%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%9B%BE%E6%A0%87/" title="Qt设置应用程序图标">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Qt设置应用程序图标</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/08/Alpine-Linux-unable-to-select-packages/" title="Alpine Linux: unable to select packages">
+                        <span class="hidden-mobile">Alpine Linux: unable to select packages</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

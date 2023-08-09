@@ -16,23 +16,24 @@
   <meta name="author" content="Daniate">
   <meta name="keywords" content="">
   
-    <meta name="description" content="执行apk add npm出现错误： 123ERROR: unable to select packages:  npm (no such package):    required by: world[npm]  解决方式：编辑&#x2F;etc&#x2F;apk&#x2F;repositories，删除链接前面存在的#。">
+    <meta name="description" content="Failed to find “gl.h”环境 macOS Ventura 13.3.1 Qt 5.15.2  问题描述出现以下错误： 1&#x2F;Applications&#x2F;Qt&#x2F;5.15.2&#x2F;clang_64&#x2F;lib&#x2F;cmake&#x2F;Qt5Gui&#x2F;Qt5GuiConfigExtras.cmake:9: error: Failed to find &quot;gl.h&quot; in &quot;&#x2F;Syst">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Alpine Linux: unable to select packages">
-<meta property="og:url" content="https://daniate.github.io/2023/05/08/Alpine-Linux-unable-to-select-packages/index.html">
+<meta property="og:title" content="Qt Errors &amp; Warnings">
+<meta property="og:url" content="https://daniate.github.io/2023/08/09/Qt-Errors-Warnings/index.html">
 <meta property="og:site_name" content="Daniate">
-<meta property="og:description" content="执行apk add npm出现错误： 123ERROR: unable to select packages:  npm (no such package):    required by: world[npm]  解决方式：编辑&#x2F;etc&#x2F;apk&#x2F;repositories，删除链接前面存在的#。">
+<meta property="og:description" content="Failed to find “gl.h”环境 macOS Ventura 13.3.1 Qt 5.15.2  问题描述出现以下错误： 1&#x2F;Applications&#x2F;Qt&#x2F;5.15.2&#x2F;clang_64&#x2F;lib&#x2F;cmake&#x2F;Qt5Gui&#x2F;Qt5GuiConfigExtras.cmake:9: error: Failed to find &quot;gl.h&quot; in &quot;&#x2F;Syst">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-05-08T09:18:52.000Z">
-<meta property="article:modified_time" content="2023-07-27T09:06:26.260Z">
+<meta property="og:image" content="https://daniate.github.io/images/media/Qt-Could-not-find-any-valid-SDKs.png">
+<meta property="article:published_time" content="2023-08-09T08:08:31.000Z">
+<meta property="article:modified_time" content="2023-08-09T08:19:19.406Z">
 <meta property="article:author" content="Daniate">
-<meta property="article:tag" content="Alpine">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Qt">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://daniate.github.io/images/media/Qt-Could-not-find-any-valid-SDKs.png">
   
   
   
-  <title>Alpine Linux: unable to select packages - Daniate</title>
+  <title>Qt Errors &amp; Warnings - Daniate</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Alpine Linux: unable to select packages"></span>
+            <span id="subtitle" data-typed-text="Qt Errors &amp; Warnings"></span>
           
         </div>
 
@@ -209,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-05-08 17:18" pubdate>
-          2023年5月8日 下午
+        <time datetime="2023-08-09 16:08" pubdate>
+          2023年8月9日 下午
         </time>
       </span>
     
@@ -221,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          128 字
+          5.2k 字
         
       </span>
     
@@ -232,7 +233,7 @@
         
         
         
-          2 分钟
+          44 分钟
         
       </span>
     
@@ -269,15 +270,55 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Alpine Linux: unable to select packages</h1>
+            <h1 id="seo-header">Qt Errors &amp; Warnings</h1>
             
             
               <div class="markdown-body">
                 
-                <p>执行<code>apk add npm</code>出现错误：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">ERROR: unable to select packages:<br>  npm (no such package):<br>    required by: world[npm]<br></code></pre></td></tr></table></figure>
+                <h1 id="Failed-to-find-“gl-h”"><a href="#Failed-to-find-“gl-h”" class="headerlink" title="Failed to find “gl.h”"></a>Failed to find “gl.h”</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>macOS Ventura 13.3.1</li>
+<li>Qt 5.15.2</li>
+</ul>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>出现以下错误：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">/Applications/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake:9: error: Failed to find &quot;gl.h&quot; in &quot;/System/Library/Frameworks/OpenGL.framework/Headers;/System/Library/Frameworks/AGL.framework/Headers&quot;. /Applications/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake:227 (include) /Applications/Qt/5.15.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake:93 (find_package) /Applications/Qt/5.15.2/clang_64/lib/cmake/Qt5/Qt5Config.cmake:28 (find_package) CMakeLists.txt:15 (find_package)<br></code></pre></td></tr></table></figure>
 
-<p>解决方式：编辑<code>/etc/apk/repositories</code>，删除链接前面存在的<code>#</code>。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>修改<code>/Applications/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake</code>文件内容。</p>
+<p>将其中的</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">set</span>(_GL_INCDIRS <br>    <span class="hljs-string">&quot;/System/Library/Frameworks/OpenGL.framework/Headers&quot;</span> <br>    <span class="hljs-string">&quot;/System/Library/Frameworks/AGL.framework/Headers&quot;</span><br>)<br></code></pre></td></tr></table></figure>
+
+<p>修改为</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">set</span>(_GL_INCDIRS <br>    <span class="hljs-string">&quot;/System/Library/Frameworks/OpenGL.framework/Headers&quot;</span> <br>    <span class="hljs-string">&quot;/System/Library/Frameworks/AGL.framework/Headers&quot;</span> <br>    <span class="hljs-string">&quot;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers&quot;</span> <br>    <span class="hljs-string">&quot;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Versions/Current/Headers&quot;</span><br>)<br></code></pre></td></tr></table></figure>
+
+<p>也就是多添加两个目录：</p>
+<ul>
+<li><code>&quot;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers&quot;</code> </li>
+<li><code>&quot;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Versions/Current/Headers&quot;</code></li>
+</ul>
+<p>将其中的</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-function"><span class="hljs-title">_qt5gui_find_extra_libs</span>(<span class="hljs-variable">OPENGL</span> <span class="hljs-string">&quot;OpenGL;AGL&quot;</span> <span class="hljs-string">&quot;&quot;</span> <span class="hljs-string">&quot;/System/Library/Frameworks/OpenGL.framework/Headers;/System/Library/Frameworks/AGL.framework/Headers&quot;</span>)</span><br></code></pre></td></tr></table></figure>
+
+<p>修改为</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-function"><span class="hljs-title">_qt5gui_find_extra_libs</span>(<span class="hljs-variable">OPENGL</span> <span class="hljs-string">&quot;OpenGL;AGL&quot;</span> <span class="hljs-string">&quot;&quot;</span> <span class="hljs-string">&quot;/System/Library/Frameworks/OpenGL.framework/Headers;/System/Library/Frameworks/AGL.framework/Headers;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Versions/Current/Headers&quot;</span>)</span><br></code></pre></td></tr></table></figure>
+
+<p>也就是多加入了以下内容：</p>
+<p><code>;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Versions/Current/Headers</code></p>
+<h1 id="Could-not-find-any-valid-SDKs"><a href="#Could-not-find-any-valid-SDKs" class="headerlink" title="Could not find any valid SDKs"></a>Could not find any valid SDKs</h1><h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><ul>
+<li>macOS Ventura 13.3.1</li>
+<li>CMake 3.22</li>
+<li>Qt Creator 7.0.2</li>
+</ul>
+<h2 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h2><p><code>Qt Creator</code>编译项目时出现以下警告：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">/Applications/CMake.app/Contents/share/cmake-3.22/Modules/Platform/Darwin-Initialize.cmake:112: warning: Could not find any valid SDKs in /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs /Applications/CMake.app/Contents/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake:21 (include) CMakeLists.txt:3 (project)<br></code></pre></td></tr></table></figure>
+
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p><code>macOS</code>系统中的<code>.sdk</code>目录名中不再包含版本号。</p>
+<h1 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h1><p>修改<code>/Applications/CMake.app/Contents/share/cmake-3.22/Modules/Platform/Darwin-Initialize.cmake</code>文件中的内容。</p>
+<p>找到以下内容：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-comment"># Find the latest SDK as recommended by Apple (Technical Q&amp;A QA1806)</span><br><span class="hljs-keyword">set</span>(_CMAKE_OSX_LATEST_SDK_VERSION <span class="hljs-string">&quot;0.0&quot;</span>)<br><span class="hljs-keyword">file</span>(GLOB _CMAKE_OSX_SDKS RELATIVE <span class="hljs-string">&quot;$&#123;_CMAKE_OSX_SDKS_DIR&#125;&quot;</span> <span class="hljs-string">&quot;$&#123;_CMAKE_OSX_SDKS_DIR&#125;/MacOSX*.sdk&quot;</span>)<br><span class="hljs-keyword">foreach</span>(_SDK <span class="hljs-variable">$&#123;_CMAKE_OSX_SDKS&#125;</span>)<br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">IS_DIRECTORY</span> <span class="hljs-string">&quot;$&#123;_CMAKE_OSX_SDKS_DIR&#125;/$&#123;_SDK&#125;&quot;</span> <span class="hljs-keyword">AND</span> _SDK <span class="hljs-keyword">MATCHES</span> <span class="hljs-string">&quot;MacOSX([0-9]+\\.[0-9]+)[^/]*\\.sdk&quot;</span> <span class="hljs-keyword">AND</span> CMAKE_MATCH_1 <span class="hljs-keyword">VERSION_GREATER</span> <span class="hljs-variable">$&#123;_CMAKE_OSX_LATEST_SDK_VERSION&#125;</span>)<br>        <span class="hljs-keyword">set</span>(_CMAKE_OSX_LATEST_SDK_VERSION <span class="hljs-string">&quot;$&#123;CMAKE_MATCH_1&#125;&quot;</span>)<br>    <span class="hljs-keyword">endif</span>()<br><span class="hljs-keyword">endforeach</span>()<br><br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">NOT</span> _CMAKE_OSX_LATEST_SDK_VERSION <span class="hljs-keyword">STREQUAL</span> <span class="hljs-string">&quot;0.0&quot;</span>)<br>    <span class="hljs-keyword">set</span>(_CMAKE_OSX_SYSROOT_DEFAULT <span class="hljs-string">&quot;$&#123;_CMAKE_OSX_SDKS_DIR&#125;/MacOSX$&#123;_CMAKE_OSX_LATEST_SDK_VERSION&#125;.sdk&quot;</span>)<br><span class="hljs-keyword">else</span>()<br>    <span class="hljs-keyword">message</span>(WARNING <span class="hljs-string">&quot;Could not find any valid SDKs in $&#123;_CMAKE_OSX_SDKS_DIR&#125;&quot;</span>)<br><span class="hljs-keyword">endif</span>()<br></code></pre></td></tr></table></figure>
+
+<p>将其修改为：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-comment"># Find the latest SDK as recommended by Apple (Technical Q&amp;A QA1806)</span><br><span class="hljs-keyword">set</span>(_CMAKE_OSX_LATEST_SDK_VERSION <span class="hljs-string">&quot;0.0&quot;</span>)<br><span class="hljs-keyword">file</span>(GLOB _CMAKE_OSX_SDKS RELATIVE <span class="hljs-string">&quot;$&#123;_CMAKE_OSX_SDKS_DIR&#125;&quot;</span> <span class="hljs-string">&quot;$&#123;_CMAKE_OSX_SDKS_DIR&#125;/MacOSX*.sdk&quot;</span>)<br><span class="hljs-keyword">foreach</span>(_SDK <span class="hljs-variable">$&#123;_CMAKE_OSX_SDKS&#125;</span>)<br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">IS_DIRECTORY</span> <span class="hljs-string">&quot;$&#123;_CMAKE_OSX_SDKS_DIR&#125;/$&#123;_SDK&#125;&quot;</span>)<br>        <span class="hljs-keyword">if</span>(_SDK <span class="hljs-keyword">MATCHES</span> <span class="hljs-string">&quot;MacOSX([0-9]+\\.[0-9]+)[^/]*\\.sdk&quot;</span> <span class="hljs-keyword">AND</span> CMAKE_MATCH_1 <span class="hljs-keyword">VERSION_GREATER</span> <span class="hljs-variable">$&#123;_CMAKE_OSX_LATEST_SDK_VERSION&#125;</span>)<br>            <span class="hljs-keyword">set</span>(_CMAKE_OSX_LATEST_SDK_VERSION <span class="hljs-string">&quot;$&#123;CMAKE_MATCH_1&#125;&quot;</span>)<br>        <span class="hljs-keyword">elseif</span>(_SDK <span class="hljs-keyword">MATCHES</span> <span class="hljs-string">&quot;MacOSX.sdk&quot;</span>)<br>            <span class="hljs-keyword">set</span>(_CMAKE_OSX_LATEST_SDK_VERSION <span class="hljs-string">&quot;&quot;</span>)<br>        <span class="hljs-keyword">endif</span>()<br>    <span class="hljs-keyword">endif</span>()<br><span class="hljs-keyword">endforeach</span>()<br><br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">NOT</span> _CMAKE_OSX_LATEST_SDK_VERSION <span class="hljs-keyword">STREQUAL</span> <span class="hljs-string">&quot;0.0&quot;</span> <span class="hljs-keyword">OR</span> _CMAKE_OSX_LATEST_SDK_VERSION <span class="hljs-keyword">STREQUAL</span> <span class="hljs-string">&quot;&quot;</span>)<br>    <span class="hljs-keyword">set</span>(_CMAKE_OSX_SYSROOT_DEFAULT <span class="hljs-string">&quot;$&#123;_CMAKE_OSX_SDKS_DIR&#125;/MacOSX$&#123;_CMAKE_OSX_LATEST_SDK_VERSION&#125;.sdk&quot;</span>)<br><span class="hljs-keyword">else</span>()<br>    <span class="hljs-keyword">message</span>(WARNING <span class="hljs-string">&quot;Could not find any valid SDKs in $&#123;_CMAKE_OSX_SDKS_DIR&#125;&quot;</span>)<br><span class="hljs-keyword">endif</span>()<br></code></pre></td></tr></table></figure>
+
+<p>主要修改的地方如下图：<br><img src="/images/media/Qt-Could-not-find-any-valid-SDKs.png" srcset="/img/loading.gif" lazyload alt="Qt Could not find any valid SDKs"></p>
 
                 
               </div>
@@ -290,9 +331,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Alpine/" class="print-no-link">#Alpine</a>
-      
-        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+        <a href="/tags/Qt/" class="print-no-link">#Qt</a>
       
     </div>
   
@@ -304,8 +343,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Alpine Linux: unable to select packages</div>
-      <div>https://daniate.github.io/2023/05/08/Alpine-Linux-unable-to-select-packages/</div>
+      <div>Qt Errors &amp; Warnings</div>
+      <div>https://daniate.github.io/2023/08/09/Qt-Errors-Warnings/</div>
     </div>
     <div class="license-meta">
       
@@ -317,7 +356,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年5月8日</div>
+          <div>2023年8月9日</div>
         </div>
       
       
@@ -349,18 +388,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/09/Qt%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD/" title="Qt信号与槽">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Qt信号与槽</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/29/OpenGL%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA/" title="OpenGL成果展示">
-                        <span class="hidden-mobile">OpenGL成果展示</span>
+                      <a href="/2023/08/09/Qt%E8%AE%BE%E7%BD%AE%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%9B%BE%E6%A0%87/" title="Qt设置应用程序图标">
+                        <span class="hidden-mobile">Qt设置应用程序图标</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

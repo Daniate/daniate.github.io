@@ -224,6 +224,144 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2021/11/08/ffmpeg-cli/%E7%AC%AC04%E7%AB%A0-%E6%92%AD%E6%94%BE%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6/" target="_self">
+          第04章-播放音视频文件
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/08/ffmpeg-cli/%E7%AC%AC04%E7%AB%A0-%E6%92%AD%E6%94%BE%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6/" target="_self">
+        <div>
+          播放音视频使用ffmpeg命令播放声音ffmpeg -i 1.mp4 -f audiotoolbox &#39;&#39; 使用ffmpeg命令播放视频使用SDL输出设备展示视频画面： ffmpeg -i 1.mp4 -pix_fmt yuv420p -f sdl &#39;&#39; 使用OpenGL输出设备展示视频画面： ffmpeg -i 1.mp4 -f opengl &#39;&#39;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-08 17:11" pubdate>
+              2021-11-08
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FFmpeg-CLI/">#FFmpeg-CLI</a>
+            
+              <a href="/tags/FFmpeg%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">#FFmpeg命令行工具</a>
+            
+              <a href="/tags/%E6%B5%81%E5%AA%92%E4%BD%93/">#流媒体</a>
+            
+              <a href="/tags/FFmpeg/">#FFmpeg</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/11/07/ffmpeg-cli/%E7%AC%AC03%E7%AB%A0-%E6%92%AD%E6%94%BE%E6%B5%8B%E8%AF%95%E9%9F%B3%E8%A7%86%E9%A2%91/" target="_self">
+          第03章-播放测试音视频
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/07/ffmpeg-cli/%E7%AC%AC03%E7%AB%A0-%E6%92%AD%E6%94%BE%E6%B5%8B%E8%AF%95%E9%9F%B3%E8%A7%86%E9%A2%91/" target="_self">
+        <div>
+          播放测试音视频直接播放用于测试的音频（不保存为文件）ffmpeg -f lavfi -i anoisesrc -f audiotoolbox &#39;&#39; 直接播放用于测试的视频（不保存为文件）使用SDL输出设备展示画面： ffmpeg -f lavfi -i mandelbrot -pix_fmt yuv420p -f sdl &#39;&#39; SDL输出设备只支持yuv420p像素
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-07 17:10" pubdate>
+              2021-11-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FFmpeg-CLI/">#FFmpeg-CLI</a>
+            
+              <a href="/tags/FFmpeg%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">#FFmpeg命令行工具</a>
+            
+              <a href="/tags/%E6%B5%81%E5%AA%92%E4%BD%93/">#流媒体</a>
+            
+              <a href="/tags/FFmpeg/">#FFmpeg</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/11/06/ffmpeg-cli/%E7%AC%AC02%E7%AB%A0-%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E9%9F%B3%E8%A7%86%E9%A2%91/" target="_self">
+          第02章-生成测试音视频
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/06/ffmpeg-cli/%E7%AC%AC02%E7%AB%A0-%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E9%9F%B3%E8%A7%86%E9%A2%91/" target="_self">
+        <div>
+          生成测试音视频要生成用于测试的音频文件或视频文件，我们需要使用libavfilter虚拟输入设备，也就是lavfi，当使用它时，输入文件（也就是-i选项）需要是一个source滤镜或sink滤镜。查看有哪些source滤镜或sink滤镜，可以通过ffmpeg -filters进行查询。 例如，下面这些滤镜可以用来生成用于测试的音频：  ffmpeg -f lavfi -i anoisesrc an
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-06 17:09" pubdate>
+              2021-11-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FFmpeg-CLI/">#FFmpeg-CLI</a>
+            
+              <a href="/tags/FFmpeg%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">#FFmpeg命令行工具</a>
+            
+              <a href="/tags/%E6%B5%81%E5%AA%92%E4%BD%93/">#流媒体</a>
+            
+              <a href="/tags/FFmpeg/">#FFmpeg</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2021/11/05/ffmpeg-cli/%E7%AC%AC01%E7%AB%A0-%E5%B8%AE%E5%8A%A9/" target="_self">
           第01章-帮助
         </a>
@@ -513,130 +651,6 @@
               <a href="/tags/OpenGL-ES/">#OpenGL ES</a>
             
               <a href="/tags/OpenGL/">#OpenGL</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2019/11/02/Git%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" target="_self">
-          Git相关问题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2019/11/02/Git%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" target="_self">
-        <div>
-          git status中文文件名乱码问题12345678910$ git statusOn branch masterInitial commitUntracked files:  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)	&quot;\345\237\272\345\234\260.
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-11-02 10:37" pubdate>
-              2019-11-02
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Git/">#Git</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2019/08/07/VSCode%E9%9B%86%E6%88%90CMake/" target="_self">
-          VSCode集成CMake
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2019/08/07/VSCode%E9%9B%86%E6%88%90CMake/" target="_self">
-        <div>
-          VSCode集成CMake安装CMake建议通过源码进行安装：https://cmake.org/download/，不赘述。 安装扩展选中“扩展”标签，搜索并安装以下扩展：   C&#x2F;C++ 扩展，是微软提供的用于支持C、C++文件及其项目的扩展，提供自动完成等功能。 CMake 扩展，用于在编写 CMakeLists.txt 文件时，提供自动完成等功能。 CMake Tools 扩展，
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-08-07 12:44" pubdate>
-              2019-08-07
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/IDE/">#IDE</a>
-            
-              <a href="/tags/VSCode/">#VSCode</a>
-            
-              <a href="/tags/CMake/">#CMake</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2019/02/11/SDL%20-%20%E5%AE%89%E8%A3%85/" target="_self">
-          SDL - 安装
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2019/02/11/SDL%20-%20%E5%AE%89%E8%A3%85/" target="_self">
-        <div>
-          SDL 安装安装方式有以下几种：  源码 Homebrew Advanced Packaging Tool Yellow dog Updater, Modified  通过源码进行安装下载相关的源码压缩包，解压，在终端中切换到源码目录，执行以下命令： 123./configuremakesudo make install   SDL2的源码中，也提供了cmake的安装方式，可通过cmake -G生
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-02-11 21:26" pubdate>
-              2019-02-11
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SDL/">#SDL</a>
             
           </div>
         
